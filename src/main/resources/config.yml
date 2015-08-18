@@ -1,0 +1,5 @@
+DataBase:
+  Driver: com.mysql.jbdc.jbdc2.optional.MysqlDataSource
+  UserName: "root"
+  Password: ""
+  Schema: "cc_db"

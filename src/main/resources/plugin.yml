@@ -1,0 +1,5 @@
+name: CCServerCore
+main: io.ccserver.ccsc.CCServerCore
+version: 1.0
+author: IOWizard
+description: Core Logic, Utils, and Game API for Server Module Development
