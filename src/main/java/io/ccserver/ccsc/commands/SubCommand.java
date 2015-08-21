@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by JJOL on 17/08/2015.
  */
-public abstract class SubCommand implements CommandExecutor, TabCompleter {
+public abstract class SubCommand implements CommandExecutor, TabCompleter, ModuleCommand {
 
 
     @Override

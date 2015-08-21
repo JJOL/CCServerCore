@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
  */
 public class FeatureListener extends PluginFeature implements Listener{
 
+    private boolean active;
 
     public FeatureListener(PluginModule plugin) {
         super(plugin);
@@ -16,15 +17,19 @@ public class FeatureListener extends PluginFeature implements Listener{
     @Override
     public void register() {
         PLUGIN.getServer().getPluginManager().registerEvents(this, PLUGIN);
+        active = true;
     }
 
     @Override
     public void enable() {
-        register();
+        if(!active) {
+            register();
+        }
     }
 
     @Override
     public void disable() {
         HandlerList.unregisterAll(this);
+        active = false;
     }
 }

@@ -11,18 +11,38 @@ import java.util.Map;
  */
 public abstract class PluginModule extends JavaPlugin {
 
-    protected final Map<String, CommandExecutor> commandMap = new HashMap<>();
-    protected final Map<String, PluginFeature> featureMap   = new HashMap<>();
+    private final Map<String, CommandExecutor> COMMAND_MAP = new HashMap<>();
+    private final Map<String, PluginFeature> FEATURES_MAP   = new HashMap<>();
 
     private final void registerCommands() {
-        for(String cmdName : commandMap.keySet()) {
-            getCommand(cmdName).setExecutor(commandMap.get(cmdName));
+        for(String cmdName : COMMAND_MAP.keySet()) {
+            getCommand(cmdName).setExecutor(COMMAND_MAP.get(cmdName));
         }
     }
 
     private final void registerFeatures() {
-        for (String name : featureMap.keySet()) {
-            featureMap.get(name).register();
+        for (String name : FEATURES_MAP.keySet()) {
+            FEATURES_MAP.get(name).register();
+        }
+    }
+
+    protected void add(String name, PluginFeature feature) {
+        FEATURES_MAP.put(name, feature);
+    }
+
+    protected void add(String name, CommandExecutor commandExecutor) {
+        COMMAND_MAP.put(name, commandExecutor);
+    }
+
+    public void turnOnFeature(String feature) {
+        if(FEATURES_MAP.containsKey(feature)) {
+            FEATURES_MAP.get(feature).enable();
+        }
+    }
+
+    public void turnOffFeature(String feature) {
+        if(FEATURES_MAP.containsKey(feature)) {
+            FEATURES_MAP.get(feature).disable();
         }
     }
 
